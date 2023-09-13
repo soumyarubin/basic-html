@@ -1,13 +1,56 @@
-h1 {
-    color: #db8888;
+
+body {
+    margin: 2%;
+    font-size: 110%;
+    }
+    input[type=text] ,input[type=number]{
+
+        width: 50%;
+        padding: 15px 20px;
+        margin: 9px 0px;
+        border: 2px solid blue;
+        border-radius: 5px;
+        
+        }
+        
+            
+            
+            input[type=submit]{
+                background-color: #04AA6D;
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-decoration: none;
+                margin: 4px 2px;
+                cursor: pointer;}
+h1{
+    color: green;
 }
-.second{
-    color: rgb(13, 119, 212);
+.container {
+   
+    background-color: rgb(245, 246, 247);
+    text-align: center;
+    width: 700px;
+    margin: auto;
+  }
+label{
+    display: inline-block;
+        width: 150px;
 }
-#third {
-    color: blueviolet;
+table{
+    border: 1px solid;
+    border-collapse: collapse;
+    width: 50%;
 }
-.name {
-    background: #0e0505;
-    color: white;
+th{
+    
+    text-align: left;
+    border: 1px solid;
+    height: 70px;
 }
+td {
+    text-align: left;
+    border: 1px solid;
+    
+}
+tr:hover {background-color: coral;}

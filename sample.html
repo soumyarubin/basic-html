@@ -1,0 +1,75 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        
+    </style>
+    <script src="/scripts/snippet-javascript-console.min.js?v=1"></script>
+</head>
+<body>-->
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
+</head>
+
+<body>
+    <form ng-submit="submit()" ng-controller="TableFilterCtrl">
+        <div class="container"><label>Name: </label>
+            <input type="text" ng-model="uname" name="uname" placeholder="Enter your name." tabindex="1"><br>
+            <label>Phone.No: </label>
+            <input type="text" ng-model="phno" name="phno" tabindex="2"><br>
+            <label>City: </label>
+            <input type="text" ng-model="city" name="city" tabindex="3"><br>
+            <input type="submit" id="submit"  value="SUBMIT" ><br>
+        </div><br>
+        <div>
+            <table>
+                <tr><strong>
+                    <td>Name</td>
+                    <td>Ph.No</td>
+                    <td>City</td>
+                </strong>
+                </tr>
+        
+                <tr ng-repeat="u in ur">
+                    <td>{{u.name}}</td>
+                    <td>{{u.phno}}</td>
+                    <td>{{u.city}}</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+<script type="text/javascript">
+    var myApp = angular.module('myApp', []);
+
+    myApp.controller('TableFilterCtrl', ['$scope', function ($scope) {
+        $scope.ur = [];
+        $scope.uname = '';
+        $scope.phno = '';
+        $scope.city = '';
+        $scope.submit = function () {
+            if (!!$scope.uname, !!$scope.phno, !!$scope.city) {
+                $scope.ur.push({
+                    name: $scope.uname,
+                    phno: $scope.phno,
+                    city: $scope.city
+                });
+            
+            }
+            $scope.uname = '';
+            $scope.phno = '';
+            $scope.city = '';
+        }
+
+    }]);
+</script>
+</body>
+
+</html>

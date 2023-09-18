@@ -7,36 +7,68 @@
     <title>Hello Soumya</title>
     <link rel="stylesheet" href="/style.css">
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
-<body>
-    <!-- heading -->
-    <h1>Welcome To Webpage</h1>
-    <h1 class="second">Welcome To Webpage</h1>
-    <h1 id="third">Welcome To Webpage</h1>
-    <p class="name">
-        Hello Soumya
-    </p>
+<script>
+    var myApp = angular.module("app", []);
+    myApp.controller("controller", function ($scope) {
+        $scope.userData = '';
+        $scope.getData = function (user) {
+            $scope.userData = angular.copy(user);
+        };
+    });
+</script>
+</head>
 
-    <h2>Welcome</h2>
+<body >
+    
     <p>
-        Hello
+        How to get form input
+        value in AngularJS
     </p>
-    <h3>Heading 3</h3>
-    <h4>Heading 4</h4>
-    <h5>Heading 5</h5>
-    <h6>Heading 6</h6>
-    <ol>
-        <li>apple</li>
-        <li>banana</li>
+    <div ng-app="app">
+        <div ng-controller="controller">
+            <form action="javascript:void(0)">
+                First Name: &nbsp;<input type="text" ng-model="user.fName" />
+                <br><br>
+                Last Name : &nbsp;<input type="text" ng-model="user.lName" />
+                <br><br>
+                Ph.No.: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" ng-model="user.Phone" />
+                <br><br>
+                City: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" ng-model="user.city" />
+                <br><br>
+                <button ng-click="getData(user)">SAVE</button>
+            </form>
 
-    </ol>
-    <ul>
-        <li>hh</li>
-        <li>gg</li>
-    </ul>
-<a href="example.com" target="_blank">click here</a>
-<img src="" alt="">
+            <p>User Data Json = {{userData | json}}</p>
 
+
+
+            <table border=1>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Ph.No</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="user in itemsDetails">
+                <tr></tr>
+                    <td>
+                        <div>{{user.fName}}</div>
+                        
+                    </td>
+                    <td> {{user.lName}} </td>
+                    <td> {{user.Phone}} </td>
+                    <td> {{user.city}} </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -8,41 +8,44 @@
 </head>
 <body>-->
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html >
 
 <head>
     <meta charset="utf-8">
     <title>Demo</title>
     <link rel="stylesheet" href="/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular.min.js"></script>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 
 <body>
-    <form ng-submit="submit()" ng-controller="TableFilterCtrl">
+    <form  ng-app="myApp"  ng-controller="TableFilterCtrl">
         <div class="container"><label>Name: </label>
-            <input type="text" ng-model="uname" name="uname" placeholder="Enter your name." tabindex="1"><br>
+            <input type="text" ng-model="name" name="uname" placeholder="Enter your name." tabindex="1"><br>
             <label>Phone.No: </label>
             <input type="text" ng-model="phno" name="phno" tabindex="2"><br>
             <label>City: </label>
             <input type="text" ng-model="city" name="city" tabindex="3"><br>
-            <input type="submit" id="submit"  value="SUBMIT" ><br>
+            <input type="submit" id="submit" value="SUBMIT" ng-click="submit()"><br>
         </div><br>
         <div>
             <table ng-if="ur.length > 0">
                 <tr><strong>
-                    <td>Name</td>
-                    <td>Ph.No</td>
-                    <td>City</td>
-                    <td>Actions</td>
-                </strong>
+                        <td>Name</td>
+                        <td>Ph.No</td>
+                        <td>City</td>
+                        <td>Actions</td>
+                    </strong>
                 </tr>
-        
+
                 <tr ng-repeat="u in ur">
                     <td>{{u.name}}</td>
                     <td>{{u.phno}}</td>
                     <td>{{u.city}}</td>
-                    <td><button>Delete</button> <button>Edit</button></td>
+                    <td>
+                        <button ng-click="remThis($index, content)">Delete</button>
+                        <button>Edit</button>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -53,22 +56,32 @@
 
     myApp.controller('TableFilterCtrl', ['$scope', function ($scope) {
         $scope.ur = [];
-        $scope.uname = '';
+        $scope.name = '';
         $scope.phno = '';
         $scope.city = '';
+        /*Add data*/
         $scope.submit = function () {
-            if (!!$scope.uname, !!$scope.phno, !!$scope.city) {
+            if (!!$scope.name, !!$scope.phno, !!$scope.city) {
                 $scope.ur.push({
-                    name: $scope.uname,
+                    name: $scope.name,
                     phno: $scope.phno,
                     city: $scope.city
                 });
-            
+
             }
-            $scope.uname = '';
+            $scope.name = '';
             $scope.phno = '';
             $scope.city = '';
         }
+        /*Remove data*/
+        $scope.remThis =
+       
+            function (index, content) {
+                
+                if (index != -1) {
+                    $scope.ur.splice(index, 1);
+                }
+            };
 
     }]);
 </script>

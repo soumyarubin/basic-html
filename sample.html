@@ -21,13 +21,22 @@
 <body>
     <form  ng-app="myApp"  ng-controller="TableFilterCtrl">
         <div class="container"><label>Name: </label>
-            <input type="text" ng-model="name" name="uname" placeholder="Enter your name." tabindex="1"><br>
+            <input type="text" ng-model="formdata.name" name="uname" placeholder="Enter your name." tabindex="1"><br>
             <label>Phone.No: </label>
             <input type="text" ng-model="phno" name="phno" tabindex="2"><br>
             <label>City: </label>
             <input type="text" ng-model="city" name="city" tabindex="3"><br>
+            <input type="hidden"  ng-model="id">
             <input type="submit" id="submit" value="SUBMIT" ng-click="submit()"><br>
         </div><br>
+       <!----<div id="view" class="container"><label>Name: </label>
+            <input type="text" ng-model="u.name" name="uname"  ><br>
+            <label>Phone.No: </label>
+            <input type="text" ng-model="phno" name="phno" ><br>
+            <label>City: </label>
+            <input type="text" ng-model="city" name="city" ><br>
+            <input type="submit" id="submit" value="UPDATE" ng-click="submit()"><br>
+        </div><br>-->
         <div>
             <table ng-if="ur.length > 0">
                 <tr><strong>
@@ -43,8 +52,8 @@
                     <td>{{u.phno}}</td>
                     <td>{{u.city}}</td>
                     <td>
-                        <button ng-click="remThis($index, content)">Delete</button>
-                        <button>Edit</button>
+                        <button ng-click="delete($index, content)">Delete</button>
+                        <button ng-click="editdata(u)">Edit</button>
                     </td>
                 </tr>
             </table>
@@ -56,17 +65,22 @@
 
     myApp.controller('TableFilterCtrl', ['$scope', function ($scope) {
         $scope.ur = [];
+        $scope.formdata={name:'',phno:'',city:'',id:''};
         $scope.name = '';
         $scope.phno = '';
         $scope.city = '';
+        $scope.id = 1;
         /*Add data*/
         $scope.submit = function () {
             if (!!$scope.name, !!$scope.phno, !!$scope.city) {
                 $scope.ur.push({
                     name: $scope.name,
                     phno: $scope.phno,
-                    city: $scope.city
+                    city: $scope.city,
+                    id:$scope.id
                 });
+                $scope.id++;
+                
 
             }
             $scope.name = '';
@@ -74,13 +88,27 @@
             $scope.city = '';
         }
         /*Remove data*/
-        $scope.remThis =
+        $scope.delete =
        
             function (index, content) {
                 
                 if (index != -1) {
                     $scope.ur.splice(index, 1);
                 }
+            };
+            $scope.editdata =
+       
+            function (u) {
+                if(u.id>0)
+                {
+
+                    console.log(u);
+                }
+                
+
+                
+                
+                
             };
 
     }]);
